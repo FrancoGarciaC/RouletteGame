@@ -3,7 +3,7 @@
 
 #include <deque>
 #include <string>
-#include "bet.hpp"
+#include "../bet.hpp"
 
 class Player{
 public:
@@ -44,7 +44,7 @@ public:
     long long int MakeBet();
 
     // Updates the betRecord and balance according to the result of the previous bet
-    void UpdateRecords(long long int prevBet);
+    void UpdateRecords(bool won, long long int bet);
 
 
 private:
