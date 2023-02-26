@@ -9,8 +9,9 @@ Game::Game(std::list<Player> playerList, Roulette roulette){
 std::list<long long int> Game::GetBets(){
     std::list<long long int> betList;
     for(auto player : PlayerList){
-        betList.push_back(player.MakeBet());
-        File << "Player " << player.GetName() << " bets on " << BetTypeToStr[player.GetBetType()] << "\n";
+        long long int bet = player.MakeBet();
+        betList.push_back(bet);
+        File << "Player " << player.GetName() << " bets " << bet << " on " << BetTypeToStr[player.GetBetType()] << "\n";
     }
     return betList;
 }
@@ -23,9 +24,9 @@ bool Game::CheckBet(int rouletteRes, BetType type){
         case High:
         return rouletteRes > 18;
         case Low:
-        return rouletteRes <= 18;
+        return rouletteRes <= 18 && rouletteRes != 0;
         case Even:
-        return rouletteRes%2 == 0;
+        return rouletteRes%2 == 0 && rouletteRes != 0;
         case Uneven:
         return rouletteRes%2 != 0;
         default:
